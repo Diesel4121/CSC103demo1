@@ -1,0 +1,33 @@
+/* 
+declaration block:
+
+selector{
+    property: value;
+    property2: value;
+}
+*/
+body{
+    background-color: aquamarine;
+}
+
+nav{
+    height: 600px;
+    width: 200px;
+    float: left;
+    padding: 5px;
+    line-height: 30px;
+}
+
+footer{
+    text-align: center;
+    margin-right: 200px;
+}
+
+#memeImage{
+    margin-right: 200px;
+
+}
+
+h1{
+    text-align: center;
+}
