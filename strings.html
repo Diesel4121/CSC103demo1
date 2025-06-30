@@ -1,0 +1,292 @@
+ <!-- Keaun Hayslip, 30JUN2025 -->
+<!-- DOCTYPE declaration specifies the document type and version, in this case, HTML5. -->
+<!DOCTYPE html>
+<!-- The html tag is the root element of an HTML page, encapsulating all content. -->
+<html lang="en">
+<head>
+    <!-- Metadata: Character set declaration for proper text encoding (e.g., handling special characters). -->
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag configures how the page scales and displays on different devices (responsive design). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the webpage, displayed in the browser's tab or window title bar. -->
+    <title>Secret Message Access</title>
+    <!-- Linking to Google Fonts for 'Roboto' and 'Playfair Display' fonts for a modern and elegant look. -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Internal CSS for styling the page, making it visually appealing and user-friendly. -->
+    <style>
+        /* Apply box-sizing globally for consistent box model behavior across all elements. */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Basic styling for the body: full height, centered content using flexbox, fonts, and background. */
+        body {
+            font-family: 'Roboto', sans-serif; /* Sets the default font for the page. */
+            display: flex; /* Uses Flexbox for layout to easily center content. */
+            justify-content: center; /* Centers items horizontally within the container. */
+            align-items: center; /* Centers items vertically within the container. */
+            min-height: 100vh; /* Ensures the body takes at least the full height of the viewport. */
+            margin: 0; /* Removes default browser margin around the body. */
+            background: linear-gradient(135deg, #2c3e50, #34495e); /* Dark blue-grey gradient background. */
+            color: #ecf0f1; /* Sets the default text color to light grey. */
+            overflow-x: hidden; /* Prevents horizontal scrolling. */
+            padding: 20px; /* Adds some padding around the main content. */
+        }
+
+        /* Container for the entire form, providing structure, styling, and a visual boundary. */
+        .container {
+            background-color: #1a242f; /* Dark background for the form box. */
+            padding: 40px; /* Ample padding inside the container. */
+            border-radius: 20px; /* Rounded corners for a sleek look. */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Deep shadow for depth. */
+            text-align: center; /* Centers all text content within the container. */
+            max-width: 500px; /* Limits the maximum width for better readability on large screens. */
+            width: 100%; /* Ensures the container is responsive and takes full width on smaller screens. */
+            border: 2px solid #f39c12; /* Accent border color (gold/orange). */
+            animation: fadeIn 1s ease-out; /* Fade-in animation on page load. */
+        }
+
+        /* Keyframe animation for a smooth fade-in effect. */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Styling for the main heading of the page. */
+        h1 {
+            font-family: 'Playfair Display', serif; /* Elegant serif font for heading. */
+            color: #f39c12; /* Gold/orange color for the heading. */
+            margin-bottom: 25px; /* Space below the heading. */
+            font-size: 2.8em; /* Larger font size for prominence. */
+            text-shadow: 0 0 15px rgba(243, 156, 18, 0.6); /* Adds a subtle glow effect. */
+        }
+
+        /* Styling for introductory paragraph. */
+        p {
+            font-size: 1.1em; /* Slightly larger text for readability. */
+            line-height: 1.6; /* Improves line spacing. */
+            color: #bdc3c7; /* Lighter grey text color. */
+            margin-bottom: 30px; /* Space below the paragraph. */
+        }
+
+        /* Styling for the form, using flexbox for input arrangement. */
+        form {
+            display: flex; /* Uses Flexbox for arranging form elements. */
+            flex-direction: column; /* Stacks form elements vertically. */
+            gap: 20px; /* Space between form input groups. */
+            margin-bottom: 30px; /* Space below the form. */
+        }
+
+        /* Styling for each input group (label + input). */
+        .input-group {
+            text-align: left; /* Align text within input group to the left. */
+        }
+
+        /* Styling for labels. */
+        label {
+            display: block; /* Makes label take its own line. */
+            margin-bottom: 8px; /* Space below the label. */
+            font-weight: bold; /* Bold text for labels. */
+            color: #ecf0f1; /* Light text color for labels. */
+            font-size: 1.05em; /* Slightly larger font size. */
+        }
+
+        /* Styling for text input fields. */
+        input[type="text"] {
+            width: 100%; /* Makes input fields take full width. */
+            padding: 12px; /* Ample padding inside input fields. */
+            border: 1px solid #555; /* Darker border. */
+            border-radius: 8px; /* Rounded corners. */
+            background-color: #2c3e50; /* Dark blue background for inputs. */
+            color: #ecf0f1; /* Light text color for input. */
+            font-size: 1em; /* Standard font size. */
+            box-sizing: border-box; /* Ensures padding doesn't add to total width. */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for focus. */
+        }
+
+        /* Focus effect for input fields. */
+        input[type="text"]:focus {
+            border-color: #f39c12; /* Gold/orange border on focus. */
+            box-shadow: 0 0 8px rgba(243, 156, 18, 0.5); /* Glow effect on focus. */
+            outline: none; /* Remove default outline. */
+        }
+
+        /* Styling for the submit button. */
+        button[type="submit"] {
+            background: linear-gradient(180deg, #e67e22, #d35400); /* Orange gradient button. */
+            color: white; /* White text on button. */
+            padding: 15px 30px; /* Generous padding. */
+            font-size: 1.2em; /* Larger font size. */
+            border: none; /* Remove default border. */
+            border-radius: 10px; /* Rounded corners. */
+            cursor: pointer; /* Indicate clickable element. */
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions. */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Button shadow. */
+            margin-top: 10px; /* Space above the button. */
+        }
+
+        /* Hover effect for the button. */
+        button[type="submit"]:hover {
+            background: linear-gradient(180deg, #d35400, #e67e22); /* Invert gradient on hover. */
+            transform: translateY(-3px); /* Slight lift effect. */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Larger shadow on hover. */
+        }
+
+        /* Active (click) effect for the button. */
+        button[type="submit"]:active {
+            transform: translateY(0); /* Return to original position. */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Smaller shadow on click. */
+        }
+
+        /* Styling for the message display area. */
+        #messageDisplay {
+            background-color: #2c3e50; /* Darker blue background for messages. */
+            padding: 25px; /* Padding for message area. */
+            border-radius: 15px; /* Rounded corners. */
+            margin-top: 25px; /* Space above the message area. */
+            border: 1px solid #34495e; /* Subtle border. */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Inner shadow for depth. */
+            min-height: 80px; /* Ensure minimum height to prevent layout shifts. */
+            display: flex; /* Use flexbox to center content. */
+            justify-content: center; /* Center horizontally. */
+            align-items: center; /* Center vertically. */
+            font-size: 1.3em; /* Larger font size for messages. */
+            font-weight: bold; /* Bold text for messages. */
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Subtle text shadow. */
+        }
+
+        /* Styling for error messages within the display area. */
+        .error-message {
+            color: #e74c3c; /* Red color for error messages. */
+        }
+
+        /* Styling for success messages within the display area. */
+        .success-message {
+            color: #2ecc71; /* Green color for success messages. */
+        }
+
+        /* Media queries for responsiveness on smaller screens. */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px; /* Reduce padding on smaller screens. */
+                margin: 15px; /* Add margin to prevent sticking to edges. */
+            }
+
+            h1 {
+                font-size: 2.2em; /* Adjust heading font size. */
+            }
+
+            p {
+                font-size: 1em; /* Adjust paragraph font size. */
+            }
+
+            input[type="text"], button[type="submit"] {
+                padding: 10px; /* Adjust input and button padding. */
+                font-size: 1em; /* Adjust input and button font size. */
+            }
+
+            #messageDisplay {
+                font-size: 1.1em; /* Adjust message display font size. */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the form and message display. -->
+    <div class="container">
+        <!-- Main heading for the page. -->
+        <h1>Access the Secret Message</h1>
+        <!-- Introductory paragraph explaining the purpose. -->
+        <p>Please enter your details to verify your identity and reveal the hidden message.</p>
+
+        <!-- Form for user input. All inputs and the submit button are within this single form. -->
+        <form id="secretAccessForm">
+            <!-- Input group for First Name. -->
+            <div class="input-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+            </div>
+
+            <!-- Input group for Last Name. -->
+            <div class="input-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+            </div>
+
+            <!-- Input group for Zip Code. -->
+            <div class="input-group">
+                <label for="zipCode">Zip Code:</label>
+                <input type="text" id="zipCode" name="zipCode" required placeholder="Enter 5-digit zip code">
+            </div>
+
+            <!-- Submit button for the form. This will trigger the JavaScript validation. -->
+            <button type="submit">Reveal Secret</button>
+        </form>
+
+        <!-- Area to display validation messages or the secret message. -->
+        <div id="messageDisplay">
+            Enter your details above and click "Reveal Secret".
+        </div>
+    </div>
+
+    <!-- JavaScript logic embedded directly in the HTML for this example. -->
+    <script>
+        // Get references to the HTML elements by their IDs.
+        const secretAccessForm = document.getElementById('secretAccessForm');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        const zipCodeInput = document.getElementById('zipCode');
+        const messageDisplay = document.getElementById('messageDisplay');
+
+        // Define the secret message.
+        const secretMessage = "Congratulations! You've unlocked the secret: 'Knowledge is the most powerful weapon.'";
+
+        // Set the onsubmit event handler for the form.
+        // This function will execute when the form is submitted.
+        secretAccessForm.onsubmit = function(event) {
+            // Prevent the default form submission behavior, which would cause a page reload.
+            event.preventDefault();
+
+            // Clear any previous messages and styling from the display area.
+            messageDisplay.innerHTML = '';
+            messageDisplay.className = ''; // Remove any success/error classes.
+
+            // Get the values from the input fields.
+            const firstName = firstNameInput.value.trim(); // .trim() removes leading/trailing whitespace.
+            const lastName = lastNameInput.value.trim();
+            const zipCode = zipCodeInput.value.trim();
+
+            // --- Validate Full Name Length ---
+            // Combine first name, a space, and last name into a single string.
+            const fullName = firstName + " " + lastName;
+            // Check if the combined full name has more than 20 characters.
+            if (fullName.length > 20) {
+                // If invalid, display an error message using innerHTML.
+                messageDisplay.innerHTML = '<span class="error-message">Error: Full name must be 20 characters or less.</span>';
+                // Stop the function execution if validation fails.
+                return;
+            }
+
+            // --- Validate Zip Code Format ---
+            // Check if the zip code contains exactly 5 digits.
+            // The regular expression /^\d{5}$/ means:
+            // ^   - start of the string
+            // \d  - any digit (0-9)
+            // {5} - exactly 5 occurrences of the preceding character (\d)
+            // $   - end of the string
+            if (!/^\d{5}$/.test(zipCode)) {
+                // If invalid, display an error message using innerHTML.
+                messageDisplay.innerHTML = '<span class="error-message">Error: Zip code must be 5 digits.</span>';
+                // Stop the function execution if validation fails.
+                return;
+            }
+
+            // --- If all inputs are valid, display the secret message ---
+            // Set the innerHTML of the message display to the secret message.
+            messageDisplay.innerHTML = '<span class="success-message">' + secretMessage + '</span>';
+            // Add a success class for specific styling (e.g., green text).
+            messageDisplay.classList.add('success-message');
+        };
+    </script>
+</body>
+</html>
