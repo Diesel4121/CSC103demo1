@@ -1,0 +1,144 @@
+<!-- Keaun Hayslip, 30JUN2025 -->
+<!-- DOCTYPE declaration informs the browser that this is an HTML5 document -->
+<!DOCTYPE html>
+<!-- The html tag is the root element of an HTML page, encapsulating all content. -->
+<html lang="en">
+<head>
+    <!-- Metadata: Character set declaration for proper text rendering. -->
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag for responsive design, making the page adapt to device width. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the webpage, displayed in the browser tab. -->
+    <title>Meme Mover!</title>
+    <!-- Removed Google Fonts link for a more basic look -->
+    <!-- Internal CSS for basic styling. -->
+    <style>
+        /* Apply box-sizing globally for consistent padding and border behavior. */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Basic body styling: full height, flexbox for centering content, default font, basic background. */
+        body {
+            font-family: sans-serif; /* Use a generic sans-serif font. */
+            display: flex; /* Use flexbox for layout. */
+            flex-direction: column; /* Stack content vertically. */
+            justify-content: center; /* Center content vertically. */
+            align-items: center; /* Center content horizontally. */
+            min-height: 100vh; /* Ensure body takes at least full viewport height. */
+            margin: 0; /* Remove default body margin. */
+            background-color: #f0f0f0; /* A very light grey background color. */
+            color: #333333; /* Basic dark text color. */
+            overflow: hidden; /* Hide overflow to prevent scrollbars from moving image. */
+            padding: 20px; /* Add some padding around the content. */
+            position: relative; /* Needed for absolute positioning of the meme. */
+        }
+
+        /* Styling for the main heading of the page. */
+        h1 {
+            color: #333333; /* Basic dark grey color for the heading. */
+            margin-bottom: 25px; /* Space below the heading. */
+            font-size: 2.5em; /* Standard font size. */
+            text-align: center; /* Center the heading text. */
+            /* Removed text-shadow and letter-spacing for basic look */
+        }
+
+        /* Container for the buttons. */
+        .button-container {
+            margin-bottom: 30px; /* Space below the buttons. */
+            display: flex; /* Use flexbox to arrange buttons side-by-side. */
+            gap: 15px; /* Basic space between buttons. */
+        }
+
+        /* Styling for the Start and Stop buttons. */
+        button {
+            background-color: #007bff; /* Standard blue button. */
+            color: white; /* White text on button. */
+            padding: 10px 20px; /* Basic padding. */
+            font-size: 1em; /* Standard font size. */
+            border: none; /* Remove default border. */
+            border-radius: 5px; /* Slightly rounded corners. */
+            cursor: pointer; /* Indicate clickable element. */
+            /* Removed transitions and box-shadow for basic look */
+        }
+
+        /* Hover effect for the buttons. */
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover. */
+            /* Removed transform and complex box-shadow for basic look */
+        }
+
+        /* Active (click) effect for the buttons. */
+        button:active {
+            background-color: #004085; /* Even darker blue on click. */
+            /* Removed transform and complex box-shadow for basic look */
+        }
+
+        /* Styling for disabled buttons. */
+        button:disabled {
+            background-color: #cccccc; /* Grey background for disabled buttons. */
+            cursor: not-allowed; /* Indicate non-clickable element. */
+            /* Removed transform and box-shadow for basic look */
+        }
+
+        /* Styling for the meme image. */
+        #memeImage {
+            position: absolute; /* Position the image absolutely within the body. */
+            width: 150px; /* Fixed width for the meme image. */
+            height: auto; /* Maintain aspect ratio. */
+            /* Removed border-radius and box-shadow for basic look */
+            /* Initial position (will be set by JS) */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the image initially. */
+            /* Removed transition for basic movement */
+        }
+
+        /* Media queries for responsiveness on smaller screens. */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Adjust heading font size. */
+            }
+
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically on small screens. */
+                gap: 10px; /* Adjust gap. */
+            }
+
+            button {
+                padding: 8px 15px; /* Adjust button padding. */
+                font-size: 0.9em; /* Adjust button font size. */
+            }
+
+            #memeImage {
+                width: 100px; /* Smaller image on small screens. */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main heading for the page. -->
+    <h1>Meme Mover!</h1>
+
+    <!-- Container for the Start and Stop buttons. -->
+    <div class="button-container">
+        <!-- Start button. Initially enabled. -->
+        <!-- The 'id' attribute is used by JavaScript to attach event listeners. -->
+        <!-- 'type="button"' prevents default form submission behavior if this were inside a form. -->
+        <button type="button" id="startButton">Start</button>
+        <!-- Stop button. Initially disabled. -->
+        <button type="button" id="stopButton" disabled>Stop</button>
+    </div>
+
+    <!-- The meme image. Its position will be controlled by JavaScript. -->
+    <!-- 'id="memeImage"' allows JavaScript to access and manipulate this element. -->
+    <!-- 'src' points to your meme image file. Ensure 'meme.jpg' is in the same folder. -->
+    <!-- 'alt' provides alternative text for accessibility. -->
+    <img id="memeImage" src="C:\Users\Keaun\Downloads\images.jpeg" alt="Funny Meme">
+
+    <!-- Link to the external JavaScript file. -->
+    <!-- The 'defer' attribute ensures that the script executes after the HTML document is fully parsed, -->
+    <!-- which is crucial for ensuring that elements like buttons and images are available when the script tries to access them. -->
+    <script src="startCode.js" defer></script>
+</body>
+</html>
