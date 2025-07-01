@@ -1,0 +1,21 @@
+body{
+  padding: 25px;
+}
+.title {
+	color: #5C6AC4;
+}
+
+th {
+  background-color: grey;
+  width: 100px;
+}
+
+tr {
+  background-color: lightgrey;
+  text-align: center;
+}
+
+table {
+  background-color: black;
+  width: 500px;
+}
