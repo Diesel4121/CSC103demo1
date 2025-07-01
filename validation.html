@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Validation</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="indexStart.html">Meme Generator</a></li>
+                <li><a href="game2.html">Simple Game</a></li>
+                <li><a href="palindrome1.html">Palindrome Checker</a></li>
+                <li><a href="validation.html">User Input Validation</a></li>
+                <li><a href="table.html">Data Table</a></li>
+                <li><a href="Boards.html">Objectives</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>User Input Validation</h1>
+        <p>Demonstrates basic form validation using JavaScript and displaying messages with `innerHTML`.</p>
+
+        <form onsubmit="validateForm(event)">
+            <label for="username">Username (min 5 characters):</label>
+            <input type="text" id="username" name="username" required>
+            <div id="usernameError" class="message error"></div>
+
+            <label for="age">Age (must be a number > 18):</label>
+            <input type="number" id="age" name="age" required>
+            <div id="ageError" class="message error"></div>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+            <div id="emailError" class="message error"></div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="formStatus" class="message">
+            </div>
+
+        <p><a href="Index.html" class="btn">Back to Landing Page</a></p>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 My Awesome Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let isValid = true;
+
+            // Clear previous messages
+            document.getElementById('usernameError').innerHTML = '';
+            document.getElementById('ageError').innerHTML = '';
+            document.getElementById('emailError').innerHTML = '';
+            document.getElementById('formStatus').innerHTML = '';
+            document.getElementById('formStatus').className = 'message'; // Reset class
+
+            // Get input values
+            const username = document.getElementById('username').value;
+            const age = document.getElementById('age').value;
+            const email = document.getElementById('email').value;
+
+            // Validate Username
+            if (username.length < 5) {
+                document.getElementById('usernameError').innerHTML = 'Username must be at least 5 characters long.';
+                document.getElementById('usernameError').className = 'message error';
+                isValid = false;
+            }
+
+            // Validate Age
+            if (isNaN(age) || parseInt(age) <= 18) {
+                document.getElementById('ageError').innerHTML = 'Age must be a number greater than 18.';
+                document.getElementById('ageError').className = 'message error';
+                isValid = false;
+            }
+
+            // Validate Email (simple regex)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerHTML = 'Please enter a valid email address.';
+                document.getElementById('emailError').className = 'message error';
+                isValid = false;
+            }
+
+            // Display overall form status
+            const formStatusDiv = document.getElementById('formStatus');
+            if (isValid) {
+                formStatusDiv.className = 'message success';
+                formStatusDiv.innerHTML = 'Form submitted successfully!';
+                // You can proceed with form submission (e.g., AJAX, or clear form)
+                // For this project, just showing success message is enough.
+                event.target.reset(); // Clear the form fields
+            } else {
+                formStatusDiv.className = 'message error';
+                formStatusDiv.innerHTML = 'Please fix the errors above.';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heads or Tails</title>
+    <style>
+        /* Minimal styling for a simple, functional layout */
+        body {
+            font-family: sans-serif; /* Basic sans-serif font */
+            background-color: #f0f0f0; /* Light gray background */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff; /* White background for the game box */
+            border: 1px solid #cccccc; /* Simple border */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center; /* Center text inside the container */
+            max-width: 350px; /* Maximum width of the game box */
+            width: 100%; /* Take full width up to max-width */
+            padding: 25px;
+        }
+        h1 {
+            color: #333333; /* Dark grey heading text */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px; /* Space below the input group */
+        }
+        label {
+            display: block; /* Make label take its own line */
+            margin-bottom: 5px; /* Space below label */
+            font-weight: bold; /* Bold text for label */
+            color: #555555; /* Medium grey label text */
+        }
+        select {
+            padding: 8px;
+            border: 1px solid #aaaaaa;
+            border-radius: 4px;
+            width: 100%; /* Make select box take full width */
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333333;
+        }
+        button {
+            background-color: #007bff; /* Standard blue button */
+            color: white; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; /* Pointer on hover */
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%; /* Full width button */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        #resultDisplay {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333333;
+            min-height: 30px; /* Prevent layout shift */
+        }
+        #coinImage {
+            width: 100px; /* Size for the coin image */
+            height: 100px;
+            border-radius: 50%; /* Make it round */
+            margin-top: 15px;
+            border: 2px solid #ccc; /* Simple border around the coin */
+            object-fit: cover; /* Ensure image covers the area */
+        }
+    </style>
+</head>
+<body>
+ <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="indexStart.html">Meme Generator</a></li>
+                <li><a href="game2.html">Simple Game</a></li>
+                <li><a href="palindrome1.html">Palindrome Checker</a></li>
+                <li><a href="validation.html">User Input Validation</a></li>
+                <li><a href="table.html">Data Table</a></li>
+                <li><a href="Boards.html">Objectives</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <!-- Modified H1 tag as per your request -->
+        <h1 id="heading">Welcome to my Page & Flip a Coin</h1>
+
+        <!-- Form for user to make a choice and submit -->
+        <form id="gameForm">
+            <div class="input-group">
+                <label for="userChoice">Choose:</label>
+                <select id="userChoice" name="userChoice">
+                    <option value="heads">Heads</option>
+                    <option value="tails">Tails</option>
+                </select>
+            </div>
+            <!-- Submit button triggers the onsubmit event of the form -->
+            <button type="submit">Flip Coin</button>
+        </form>
+
+        <!-- Image element to display the Heads or Tails image -->
+        <img id="coinImage" src="https://placehold.co/100x100/CCCCCC/000000?text=Flip!" alt="Coin Placeholder">
+
+        <!-- Area to display the game results -->
+        <div id="resultDisplay"></div>
+    </div>
+
+    <script>
+        // JSON object to hold all game messages
+        const messages = {
+            flipResult: "The coin landed on: ",
+            userChose: "You chose: ",
+            win: "You win!",
+            lose: "You lose!",
+            heads: "Heads",
+            tails: "Tails"
+        };
+
+        // Get references to HTML elements by their IDs
+        const gameForm = document.getElementById('gameForm');
+        const userChoiceSelect = document.getElementById('userChoice');
+        const resultDisplay = document.getElementById('resultDisplay');
+
+        // Set the onsubmit event handler for the form.
+        // This function runs when the form is submitted.
+        gameForm.onsubmit = function(event) {
+            // Prevent the default form submission behavior (page reload)
+            event.preventDefault();
+
+            // Clear any previous results
+            resultDisplay.innerHTML = '';
+
+            // Get the user's selected choice from the dropdown
+            const userSelection = userChoiceSelect.value; // Will be "heads" or "tails"
+
+            // Simulate a coin flip: 0 for Heads, 1 for Tails
+            const coinFlipResult = Math.floor(Math.random() * 2); // Generates 0 or 1
+
+            let actualOutcome = '';
+            if (coinFlipResult === 0) {
+                actualOutcome = messages.heads;
+            } else {
+                actualOutcome = messages.tails;
+            }
+
+            // Compare user's choice with the actual coin flip result
+            let gameOutcomeMessage = '';
+            // Check if user's selection matches the actual outcome
+            if (userSelection === actualOutcome.toLowerCase()) {
+                gameOutcomeMessage = messages.win;
+            } else {
+                gameOutcomeMessage = messages.lose;
+            }
+
+            // Display all the results using innerHTML
+            resultDisplay.innerHTML = `
+                <p>${messages.userChose} <strong>${userSelection.charAt(0).toUpperCase() + userSelection.slice(1)}</strong></p>
+                <p>${messages.flipResult} <strong>${actualOutcome}</strong></p>
+                <p><strong>${gameOutcomeMessage}</strong></p>
+            `;
+        };
+    </script>
+<p><a href="index.html" class="btn">Back to Landing Page</a></p>
+</body>
+</html>

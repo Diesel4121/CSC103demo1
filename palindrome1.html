@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="indexStart.html">Meme Generator</a></li>
+                <li><a href="game2.html">Simple Game</a></li>
+                <li><a href="palindrome1.html">Palindrome Checker</a></li>
+                <li><a href="validation.html">User Input Validation</a></li>
+                <li><a href="table.html">Data Table</a></li>
+                <li><a href="Boards.html">Objectives</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Palindrome Checker</h1>
+        <p>Enter a word or phrase to check if it's a palindrome (reads the same forwards and backwards).</p>
+
+        <form onsubmit="checkPalindrome(event)">
+            <label for="palindromeInput">Enter Text:</label>
+            <input type="text" id="palindromeInput" name="palindromeInput" placeholder="e.g., Madam" required>
+            <button type="submit">Check Palindrome</button>
+        </form>
+
+        <div id="palindromeResult" class="message">
+            </div>
+
+        <p><a href="index1.html" class="btn">Back to Landing Page</a></p>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 My Awesome Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // No actionListeners and JS functions cannot be in HTML,
+        // but for a submit event on a form, onsubmit is a standard attribute.
+        // The event object is passed to prevent default form submission behavior.
+
+        function checkPalindrome(event) {
+            event.preventDefault(); // Prevent the default form submission (page reload)
+
+            const inputElement = document.getElementById('palindromeInput');
+            const resultDiv = document.getElementById('palindromeResult');
+            const inputText = inputElement.value.toLowerCase().replace(/[^a-z0-9]/g, ''); // Clean input
+
+            if (inputText === '') {
+                resultDiv.className = 'message error';
+                resultDiv.innerHTML = 'Please enter some text to check.';
+                return;
+            }
+
+            const reversedText = inputText.split('').reverse().join('');
+
+            if (inputText === reversedText) {
+                resultDiv.className = 'message success';
+                resultDiv.innerHTML = `"${inputElement.value}" is a palindrome!`;
+            } else {
+                resultDiv.className = 'message error';
+                resultDiv.innerHTML = `"${inputElement.value}" is NOT a palindrome.`;
+            }
+        }
+    </script>
+</body>
+</html>
