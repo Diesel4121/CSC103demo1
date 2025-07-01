@@ -1,0 +1,96 @@
+/* Keaun Hayslip 01JUL2025 */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enchanted Soundscape</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: sans-serif; /* Basic sans-serif font */
+            background-color: #f0f0f0; /* Light gray background */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff; /* White background for the game box */
+            border: 1px solid #cccccc; /* Simple border */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center; /* Center text inside the container */
+            max-width: 350px; /* Maximum width of the game box */
+            width: 100%; /* Take full width up to max-width */
+            padding: 25px;
+        }
+        h1 {
+            color: #333333; /* Dark grey heading text */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px; /* Space below the input group */
+        }
+        label {
+            display: block; /* Make label take its own line */
+            margin-bottom: 5px; /* Space below label */
+            font-weight: bold; /* Bold text for label */
+            color: #555555; /* Medium grey label text */
+        }
+        select {
+            padding: 8px;
+            border: 1px solid #aaaaaa;
+            border-radius: 4px;
+            width: 100%; /* Make select box take full width */
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333333;
+        }
+        button {
+            background-color: #007bff; /* Standard blue button */
+            color: white; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; /* Pointer on hover */
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 15px;
+            width: 100%; /* Full width button */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        audio {
+            display: none; /* Hide audio element */
+            width: 100%; /* Full width for audio controls */
+            margin-top: 20px; /* Space above audio controls */
+            border-radius: 5px; /* Rounded corners for audio controls */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+    </style> 
+
+
+    <div class="container">
+        <h1>Welcome to the Enchanted Soundscape!</h1>
+        <p>Click the button below to unleash a magical sound.</p>
+        <button id="soundButton">Play Enchanting Sound</button>
+        <img 
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=350&q=80" 
+            alt="Enchanted Landscape" 
+            style="width:100%;border-radius:8px;margin-top:20px;box-shadow:2px 2px 5px rgba(0,0,0,0.1);"
+        >
+        <audio id="mySound" src="C:\Users\Keaun\Videos\4K Video Downloader+\Shaboozey - Vegas   A COLORS SHOW.mp4" preload="auto" controls></audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
