@@ -1,0 +1,240 @@
+<!-- Keaun Hayslip, 30JUN2025 -->
+<!-- DOCTYPE declaration informs the browser that this is an HTML5 document. -->
+<!DOCTYPE html>
+<!-- The html tag is the root element of an HTML page, encapsulating all content. -->
+<html lang="en">
+<head>
+    <!-- Metadata: Character set declaration for proper text rendering. -->
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag for responsive design, making the page adapt to device width. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the webpage, displayed in the browser tab. -->
+    <title>Palindrome Checker</title>
+    <!-- Linking to Google Fonts for 'Montserrat' (for headings) and 'Open Sans' (for body) for a modern look. -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <!-- Internal CSS for styling the page, making it visually appealing and user-friendly. -->
+    <style>
+        /* Apply box-sizing globally for consistent padding and border behavior. */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Basic body styling: full height, flexbox for centering content, font family, background. */
+        body {
+            font-family: 'Open Sans', sans-serif; /* Set the primary font to Open Sans. */
+            display: flex; /* Use flexbox for layout. */
+            justify-content: center; /* Center content horizontally. */
+            align-items: center; /* Center content vertically. */
+            min-height: 100vh; /* Ensure body takes at least full viewport height. */
+            margin: 0; /* Remove default body margin. */
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Vibrant purple-blue gradient background. */
+            color: #ffffff; /* Light text color for contrast. */
+            overflow-x: hidden; /* Prevent horizontal scrolling. */
+            padding: 20px; /* Add some padding around the content. */
+        }
+
+        /* Container for the entire application, providing structure and styling. */
+        .container {
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly transparent white background. */
+            padding: 40px; /* Ample padding inside the container. */
+            border-radius: 20px; /* Rounded corners for a sleek look. */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Deep shadow for depth. */
+            text-align: center; /* Center all text content within the container. */
+            max-width: 500px; /* Limit maximum width for better readability. */
+            width: 100%; /* Make it responsive. */
+            backdrop-filter: blur(8px); /* Apply a blur effect to content behind for a frosted glass look. */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border. */
+            animation: slideIn 1s ease-out forwards; /* Slide-in animation on load. */
+        }
+
+        /* Keyframe animation for a smooth slide-in effect. */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Styling for the main heading of the page. */
+        h1 {
+            font-family: 'Montserrat', sans-serif; /* Bold, modern font for heading. */
+            color: #FFD700; /* Gold color for emphasis. */
+            margin-bottom: 25px; /* Space below the heading. */
+            font-size: 2.8em; /* Larger font size. */
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Glowing text effect. */
+            letter-spacing: 1px; /* Add some letter spacing. */
+        }
+
+        /* Styling for introductory paragraph. */
+        p {
+            font-size: 1.1em; /* Slightly larger text for readability. */
+            line-height: 1.6; /* Improved line spacing. */
+            color: #e0e0e0; /* Lighter grey text color. */
+            margin-bottom: 30px; /* Space below the paragraph. */
+        }
+
+        /* Styling for the form, using flexbox for input arrangement. */
+        form {
+            display: flex; /* Use flexbox for arranging form elements. */
+            flex-direction: column; /* Stacks form elements vertically. */
+            gap: 15px; /* Space between form input groups. */
+            margin-bottom: 25px; /* Space below the form. */
+        }
+
+        /* Styling for text input fields. */
+        input[type="text"] {
+            width: 100%; /* Makes input fields take full width. */
+            padding: 12px; /* Ample padding inside input fields. */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border. */
+            border-radius: 8px; /* Rounded corners. */
+            background-color: rgba(0, 0, 0, 0.3); /* Transparent dark background for inputs. */
+            color: #ffffff; /* Light text color for input. */
+            font-size: 1em; /* Standard font size. */
+            box-sizing: border-box; /* Ensures padding doesn't add to total width. */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for focus. */
+        }
+
+        /* Placeholder text color. */
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Focus effect for input fields. */
+        input[type="text"]:focus {
+            border-color: #FFD700; /* Gold border on focus. */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); /* Glow effect on focus. */
+            outline: none; /* Remove default outline. */
+        }
+
+        /* Styling for the submit button. */
+        button[type="submit"], #checkAnotherButton, #doneButton { /* Added IDs for new buttons */
+            background: linear-gradient(180deg, #FFD700, #FFA500); /* Gold to orange gradient button. */
+            color: #333333; /* Dark text on button for contrast. */
+            padding: 15px 30px; /* Generous padding. */
+            font-size: 1.2em; /* Larger font size. */
+            border: none; /* Remove default border. */
+            border-radius: 10px; /* Rounded corners. */
+            cursor: pointer; /* Indicate clickable element. */
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions. */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Button shadow. */
+            font-weight: bold; /* Bold text. */
+        }
+
+        /* Hover effect for buttons. */
+        button[type="submit"]:hover, #checkAnotherButton:hover, #doneButton:hover {
+            background: linear-gradient(180deg, #FFA500, #FFD700); /* Invert gradient on hover. */
+            transform: translateY(-3px); /* Slight lift effect. */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Larger shadow on hover. */
+        }
+
+        /* Active (click) effect for buttons. */
+        button[type="submit"]:active, #checkAnotherButton:active, #doneButton:active {
+            transform: translateY(0); /* Return to original position. */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Smaller shadow on click. */
+        }
+
+        /* Styling for the message display area. */
+        #resultDisplay {
+            background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent dark background for results. */
+            padding: 25px; /* Padding for result area. */
+            border-radius: 15px; /* Rounded corners. */
+            margin-top: 25px; /* Space above the result area. */
+            min-height: 80px; /* Ensure minimum height to prevent layout shifts. */
+            display: flex; /* Use flexbox to center content. */
+            justify-content: center; /* Center horizontally. */
+            align-items: center; /* Center vertically. */
+            font-size: 1.4em; /* Larger font size for results. */
+            font-weight: bold; /* Bold text for results. */
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Subtle text shadow. */
+        }
+
+        /* Styling for palindrome message. */
+        .palindrome-message {
+            color: #2ecc71; /* Green color for success. */
+        }
+
+        /* Styling for non-palindrome message. */
+        .not-palindrome-message {
+            color: #e74c3c; /* Red color for failure. */
+        }
+
+        /* Styling for the "Check Another Word" button container. */
+        .button-group {
+            margin-top: 20px; /* Space above the button group. */
+            display: flex; /* Use flexbox to arrange buttons. */
+            justify-content: center; /* Center buttons horizontally. */
+            gap: 15px; /* Space between buttons. */
+        }
+
+        /* Styling for the session end message. */
+        #sessionEndMessage {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-top: 30px;
+            display: none; /* Hidden by default */
+        }
+
+        /* Media queries for responsiveness on smaller screens. */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px; /* Reduce padding on smaller screens. */
+                margin: 15px; /* Add margin to prevent sticking to edges. */
+            }
+
+            h1 {
+                font-size: 2.2em; /* Adjust heading font size. */
+            }
+
+            p {
+                font-size: 1em; /* Adjust paragraph font size. */
+            }
+
+            input[type="text"], button[type="submit"], #checkAnotherButton, #doneButton {
+                padding: 10px; /* Adjust input and button padding. */
+                font-size: 1em; /* Adjust input and button font size. */
+            }
+
+            #resultDisplay {
+                font-size: 1.1em; /* Adjust result display font size. */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the palindrome checker application. -->
+    <div class="container">
+        <!-- Main heading for the page. -->
+        <h1>Palindrome Checker</h1>
+        <!-- Introductory paragraph explaining the purpose. -->
+        <p>Enter a word or phrase below to see if it's a palindrome (reads the same forwards and backwards)!</p>
+
+        <!-- Form for user input. All inputs and the submit button are within this single form. -->
+        <form id="palindromeForm">
+            <!-- Text input for the user's string. -->
+            <input type="text" id="phraseInput" name="phrase" required placeholder="Enter a word or phrase">
+            <!-- Submit button for the form. This will trigger the JavaScript validation. -->
+            <button type="submit" id="submitButton">Check Palindrome</button>
+        </form>
+
+        <!-- Area to display the palindrome check results. -->
+        <div id="resultDisplay">
+            Enter text and click "Check Palindrome".
+        </div>
+
+        <!-- Button group for user options after a check. Hidden by default. -->
+        <div class="button-group" id="actionButtons" style="display: none;">
+            <button type="button" id="checkAnotherButton">Check Another Word</button>
+            <button type="button" id="doneButton">Done</button>
+        </div>
+
+        <!-- Message to display when the session is ended. Hidden by default. -->
+        <div id="sessionEndMessage">
+            Thank you for using the Palindrome Checker!
+        </div>
+    </div>
+
+    <!-- Link to the external JavaScript file. -->
+    <!-- The 'defer' attribute ensures that the script executes after the HTML document is fully parsed, -->
+    <!-- which is crucial for ensuring that elements are available when the script tries to access them. -->
+    <script src="palindromeS.js" defer></script>
+</body>
+</html>
