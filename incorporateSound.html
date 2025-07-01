@@ -1,4 +1,4 @@
-/* Keaun Hayslip 01JUL2025 */
+<!-- Keaun Hayslip 01JUL2025 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +20,22 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+
+            #messageDisplay {
+            background-color: #2c3e50; /* Darker blue background for messages. */
+            padding: 25px; /* Padding for message area. */
+            border-radius: 15px; /* Rounded corners. */
+            margin-top: 25px; /* Space above the message area. */
+            border: 1px solid #34495e; /* Subtle border. */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Inner shadow for depth. */
+            min-height: 80px; /* Ensure minimum height to prevent layout shifts. */
+            display: flex; /* Use flexbox to center content. */
+            justify-content: center; /* Center horizontally. */
+            align-items: center; /* Center vertically. */
+            font-size: 1.3em; /* Larger font size for messages. */
+            font-weight: bold; /* Bold text for messages. */
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Subtle text shadow. */
+            }
         }
         .container {
             background-color: #ffffff; /* White background for the game box */
@@ -83,13 +99,13 @@
         <h1>Welcome to the Enchanted Soundscape!</h1>
         <p>Click the button below to unleash a magical sound.</p>
         <button id="soundButton">Play Enchanting Sound</button>
+        <button id="soundButton1">Stop Enchanting Sound</button>
         <img 
             src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=350&q=80" 
             alt="Enchanted Landscape" 
             style="width:100%;border-radius:8px;margin-top:20px;box-shadow:2px 2px 5px rgba(0,0,0,0.1);"
         >
         <audio id="mySound" src="C:\Users\Keaun\Videos\4K Video Downloader+\Shaboozey - Vegas   A COLORS SHOW.mp4" preload="auto" controls></audio>
-    </div>
 
     <script src="script.js"></script>
 </body>
